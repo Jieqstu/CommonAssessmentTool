@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "your_project_name"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <youremail@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+# List your project dependencies here, for example:
+requests = "^2.25.1"
+
+[tool.poetry.dev-dependencies]
+black = "^23.10.0"
+flake8 = "^6.0.0"
+mypy = "^1.5.0"
+pylint = "^3.0.1"
+isort = "^5.12.0"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+skip-string-normalization = false
+
+[tool.flake8]
+max-line-length = 88
+ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "docs",
+    "tests",
+]
+
+[tool.mypy]
+files = ["src"]
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+strict_optional = true
+
+[tool.pylint]
+load-plugins = "pylint_flask"
+max-line-length = 88
+disable = ["C0114", "C0115", "C0116"]  # Disable docstring warnings
