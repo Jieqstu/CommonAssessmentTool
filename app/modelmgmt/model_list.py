@@ -4,7 +4,7 @@ Model listing and selection module for the Common Assessment Tool.
 Provides:
 - A list of available machine learning models
 - Logic to get the currently active model (mock)
-- Support for switching models (to be implemented)
+- Support for switching models (Done)
 
 Currently uses a static list and a mock current model for demonstration purposes.
 """
@@ -24,7 +24,7 @@ def get_current_model():
     """
     return CURRENT_MODEL
 
-def switch_model(model_name: str) -> bool:
+def switch_model(model_name):
     """
     Switch the current model if the provided model_name is available.
     Returns True if successful, False otherwise.
