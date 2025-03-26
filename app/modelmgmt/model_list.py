@@ -24,4 +24,15 @@ def get_current_model():
     """
     return CURRENT_MODEL
 
+def switch_model(model_name: str) -> bool:
+    """
+    Switch the current model if the provided model_name is available.
+    Returns True if successful, False otherwise.
+    """
+    global CURRENT_MODEL
+    if model_name in AVAILABLE_MODELS:
+        CURRENT_MODEL = model_name
+        return True
+    return False
+
 
