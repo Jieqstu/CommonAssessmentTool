@@ -24,4 +24,20 @@ def get_current_model():
     """
     return CURRENT_MODEL
 
+def switch_model(new_model: str):
+    """
+    Switch the current model to a new one if it's available.
+
+    Args:
+        new_model (str): The name of the model to switch to
+
+    Raises:
+        ValueError: If the model is not in the available list
+    """
+    global CURRENT_MODEL
+    if new_model not in AVAILABLE_MODELS:
+        raise ValueError(f"Model '{new_model}' is not in the available list.")
+    CURRENT_MODEL = new_model
+
+
 
