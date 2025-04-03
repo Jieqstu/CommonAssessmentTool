@@ -4,5 +4,3 @@ services:
     build: .
     ports:
       - "8000:8000"
-    # For M1 Macs: Uncomment the following line if needed
-    # platform: linux/amd64
