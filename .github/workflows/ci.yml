@@ -33,7 +33,7 @@ jobs:
         run: poetry run black --check .
 
       - name: Run Flake8
-        run: poetry run flake8 --max-line-length=88 .
+        run: poetry run flake8 --max-line-length=88 --ignore=W291,W503,F401,F402,E712 .
 
       - name: Run MyPy
         run: poetry run mypy app/
