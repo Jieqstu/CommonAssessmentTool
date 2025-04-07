@@ -33,13 +33,13 @@ jobs:
         run: poetry run black --check .
 
       - name: Run Flake8
-        run: poetry run flake8 .
+        run: poetry run flake8 --max-line-length=88 .
 
       - name: Run MyPy
-        run: poetry run mypy src/
+        run: poetry run mypy app/
 
       - name: Run Pylint
-        run: poetry run pylint src/
+        run: poetry run pylint --max-line-length=88 app/
 
   test:
     name: Run Tests

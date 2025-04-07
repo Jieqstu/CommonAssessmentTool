@@ -3,7 +3,7 @@ repos:
     rev: 24.10.0  # Updated to the latest version as of October 2024
     hooks:
       - id: black
-        # args: ["--line-length", "80"]
+        args: ["--line-length", "88"]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 7.1.1  # Updated to the latest version as of October 2024
