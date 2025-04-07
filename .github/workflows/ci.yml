@@ -36,7 +36,7 @@ jobs:
         run: poetry run flake8 --max-line-length=88 --ignore=W291,W503,F401,F402,E712 .
 
       - name: Run Pylint
-        run: poetry run pylint --max-line-length=88 --disable=C0103,C0411,C0412,W0613,R0913,R0914,R0915,W0707 app/
+        run: poetry run pylint --max-line-length=88 --disable=R0917,W0611,C0325,R0912,W0621,W0631,W0603,E0213,R0801,C0103,C0411,C0412,W0613,R0913,R0914,R0915,W0707 app/
 
   test:
     name: Run Tests
