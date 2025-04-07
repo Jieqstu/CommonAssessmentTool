@@ -1,9 +1,12 @@
+from datetime import timedelta
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from datetime import timedelta
+
 from app.database import get_db
 from app.models import User, UserRole
+
 from .schemas import UserCreate, UserResponse
 from .security import create_access_token, decode_access_token
 from .services import authenticate_user, create_user
@@ -12,6 +15,7 @@ router = APIRouter(prefix="/auth", tags=["authentication"])
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
 
 async def get_current_user(
     token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
@@ -33,6 +37,7 @@ async def get_current_user(
         )
     return user
 
+
 def get_admin_user(current_user: User = Depends(get_current_user)):
     if current_user.role != UserRole.admin:
         raise HTTPException(
@@ -40,6 +45,7 @@ def get_admin_user(current_user: User = Depends(get_current_user)):
             detail="Only admins can perform this operation",
         )
     return current_user
+
 
 @router.post("/token")
 async def login_for_access_token(
@@ -59,6 +65,7 @@ async def login_for_access_token(
     )
 
     return {"access_token": access_token, "token_type": "bearer"}
+
 
 @router.post("/users", response_model=UserResponse)
 async def create_new_user(
