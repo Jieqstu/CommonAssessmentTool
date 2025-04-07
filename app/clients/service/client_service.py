@@ -260,7 +260,8 @@ class ClientService:
         if not client_case:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"No case found for client {client_id} with case worker {user_id}. "
+                detail=f"No case found for client {client_id} "
+                f"with case worker {user_id}. "
                 f"Cannot update services for a non-existent case assignment.",
             )
 
@@ -310,7 +311,8 @@ class ClientService:
         if existing_case:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Client {client_id} already has a case assigned to case worker {case_worker_id}",
+                detail=f"Client {client_id} already has a case "
+                f"assigned to case worker {case_worker_id}",
             )
 
         try:

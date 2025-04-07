@@ -12,17 +12,20 @@ Currently uses a static list and a mock current model for demonstration purposes
 AVAILABLE_MODELS = ["random_forest", "svm", "xgboost"]
 CURRENT_MODEL = "random_forest"
 
+
 def get_available_models():
     """
     Return a list of available mock models.
     """
     return AVAILABLE_MODELS
 
+
 def get_current_model():
     """
     Return the currently active model (mock).
     """
     return CURRENT_MODEL
+
 
 def switch_model(new_model: str):
     """
@@ -38,6 +41,3 @@ def switch_model(new_model: str):
     if new_model not in AVAILABLE_MODELS:
         raise ValueError(f"Model '{new_model}' is not in the available list.")
     CURRENT_MODEL = new_model
-
-
-

@@ -9,6 +9,14 @@ license = "MIT"
 python = "^3.9"
 # List your project dependencies here, for example:
 requests = "^2.25.1"
+numpy = "<2.2"
+fastapi = "^0.115.12"
+sqlalchemy = "^2.0.40"
+pydantic = "^2.11.2"
+pandas = "^2.2.3"
+scikit-learn = "^1.6.1"
+passlib = "^1.7.4"
+python-jose = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 black = "^23.10.0"

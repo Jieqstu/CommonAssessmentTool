@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field, validator
 from app.models import UserRole
 
+
 class UserCreate(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     email: str
@@ -12,6 +13,7 @@ class UserCreate(BaseModel):
         if v not in [UserRole.admin, UserRole.case_worker]:
             raise ValueError("Role must be either admin or case_worker")
         return v
+
 
 class UserResponse(BaseModel):
     username: str
