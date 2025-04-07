@@ -9,7 +9,7 @@ repos:
     rev: 7.1.1  # Updated to the latest version as of October 2024
     hooks:
       - id: flake8
-        args: ['--ignore=E501,W291,W503']
+        args: ['--max-line-length=88, --ignore=E501,W291,W503,']
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2  # Updated to the latest version as of October 2024
