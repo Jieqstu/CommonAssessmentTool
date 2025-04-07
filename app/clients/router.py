@@ -1,6 +1,7 @@
 """
 Router module for client-related endpoints.
-Handles all HTTP requests for client operations including create, read, update, and delete.
+Handles all HTTP requests for client operations including create, read, update,
+ and delete.
 """
 
 from typing import List, Optional
@@ -135,7 +136,8 @@ async def get_client_services(
     current_user: User = Depends(get_admin_user),
     db: Session = Depends(get_db),
 ):
-    """Get all services and their status for a specific client, including case worker info"""
+    """Get all services and their status for a specific client,
+    including case worker info"""
     return ClientService.get_client_services(db, client_id)
 
 

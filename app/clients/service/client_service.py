@@ -3,12 +3,14 @@ Client service module handling all database operations for clients.
 Provides CRUD operations and business logic for client management.
 """
 
-from sqlalchemy.orm import Session
-from sqlalchemy import and_
+from typing import Any, Dict, List, Optional
+
 from fastapi import HTTPException, status
-from typing import List, Optional, Dict, Any
+from sqlalchemy import and_
+from sqlalchemy.orm import Session
+
+from app.clients.schema import ClientUpdate, ServiceResponse, ServiceUpdate
 from app.models import Client, ClientCase, User
-from app.clients.schema import ClientUpdate, ServiceUpdate, ServiceResponse
 
 
 class ClientService:
@@ -260,7 +262,7 @@ class ClientService:
         if not client_case:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"No case found for client {client_id} with case worker {user_id}. "
+                detail=f"No case found for {client_id} with worker {user_id}. "
                 f"Cannot update services for a non-existent case assignment.",
             )
 
@@ -310,7 +312,8 @@ class ClientService:
         if existing_case:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Client {client_id} already has a case assigned to case worker {case_worker_id}",
+                detail=f"Client {client_id} already has a "
+                f"case assigned to worker {case_worker_id}",
             )
 
         try:
