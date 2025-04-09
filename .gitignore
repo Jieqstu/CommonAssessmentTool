@@ -33,4 +33,4 @@ build/
 htmlcov/
 .tox/
 .coverage
-.coverage.*
+.coverage.*.python-version
