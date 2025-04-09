@@ -1,4 +1,4 @@
-Team TicTech 
+Team TicTech
 
 Project -- Feature Development Backend: Create CRUD API's for Client
 
@@ -55,3 +55,38 @@ This also has an API file to interact with the front end, and logic in order to 
 
 -Create case assignment (Allow authorized users to create a new case assignment.)
 
+
+## Running with Docker
+
+### Prerequisites
+Before running the backend with Docker, ensure you have the following installed:
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Option 1: Run using Docker Commands
+
+#### Step 1: Build the Docker Image
+```bash
+docker build -t case-management-backend .
+```
+This command reads Dockerfile, installs the necessary dependencies and sets up the container environment.
+
+Step 2: Run the Docker Container
+```bash
+docker run -p 8000:8000 case-management-backend
+```
+This command starts the container and maps port 8000 of your container to port 8000 on your host machine.
+
+### Option 2: Run using Docker Compose
+
+#### Step 1: Start the Container using Docker Compose
+```bash
+docker-compose up --build
+```
+This command builds the image and starts the containers defined in the docker-compose.yml.
+
+#### Step 2: Stopping the Container
+```bash
+docker-compose down
+```
+This command stops and removes the containers.
