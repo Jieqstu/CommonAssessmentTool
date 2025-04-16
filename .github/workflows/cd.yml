@@ -5,6 +5,8 @@ on:
     branches: [master, main]
   pull_request:
     branches: [master, main]
+  release:
+    types: [published] # only triggers when a GitHub Release is published
 
 jobs:
   test:
@@ -27,21 +29,24 @@ jobs:
         run: |
           python -m pytest tests/
 
+  # CD Job - Runs only when a Release is published
   deploy:
-    needs: test # This ensures deploy only runs if tests pass
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t common-assessment-tool .
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Run Docker container
+      - name: Deploy to EC2
         run: |
-          docker run -d -p 8000:8000 common-assessment-tool
-          sleep 10  # Wait for container to start
-
-      - name: Test Docker container
-        run: |
-          curl http://localhost:8000/docs
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} '
+            cd ~/your-app-folder &&
+            git pull origin master &&
+            docker compose down &&
+            docker compose up -d --build
+          '
