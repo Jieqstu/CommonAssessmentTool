@@ -45,8 +45,8 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} '
-            cd ~/your-app-folder &&
-            git pull origin master &&
+            cd ~/CommonAssessmentTool &&
+            git pull origin main &&
             docker compose down &&
             docker compose up -d --build
           '
