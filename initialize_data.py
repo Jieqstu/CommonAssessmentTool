@@ -2,7 +2,7 @@ import pandas as pd
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.models import Client, User, ClientCase, UserRole
-from app.auth.router import get_password_hash
+from app.auth.security import get_password_hash
 
 
 def initialize_database():
