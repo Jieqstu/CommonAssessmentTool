@@ -90,3 +90,88 @@ This command builds the image and starts the containers defined in the docker-co
 docker-compose down
 ```
 This command stops and removes the containers.
+
+---
+# Sprint3 - Story 1
+
+## Public Swagger URL
+http://ec2-18-212-56-36.compute-1.amazonaws.com:8000/docs
+
+## Deployment Instructions
+
+1. SSH into EC2
+```bash
+ssh -i ~/.ssh/casemanagement.pem ubuntu@18.212.56.36
+```
+
+Make sure the key file has proper permissions:
+```bash
+chmod 400 ~/.ssh/casemanagement.pem
+```
+
+2. Clone the repo and set up the environment
+
+```bash
+sudo apt update
+sudo apt install git python3-pip python3-venv -y
+
+git clone https://github.com/Jieqstu/CommonAssessmentTool.git
+cd CommonAssessmentTool
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+3. Run the backend server
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+4. Load initial data
+```bash
+source venv/bin/activate
+python initialize_data.py
+```
+This will insert default users including an admin and case worker.
+
+5. Log in via Swagger
+Admin Username: admin
+
+Admin Password: admin123
+
+Get the token from /token, click "Authorize", then access protected endpoints like /clients.
+
+
+## Developer Setup / SSH Access Instructions (for teammates)
+
+### SSH Access to EC2
+
+You can SSH into the EC2 instance using the following credentials:
+
+```bash
+ssh -i ~/.ssh/casemanagement.pem ubuntu@18.212.56.36
+```
+
+Username: ubuntu
+
+Make sure you have the casemanagement.pem key file
+Move the key to ~/.ssh/ for convenience
+If needed, run chmod 400 casemanagement.pem to restrict permissions
+
+Once logged in:
+```bash
+cd ~/CommonAssessmentTool
+```
+
+Manually Running the Backend (for testing)
+```bash
+source venv/bin/activate
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+Testing the Server
+After running the server, Swagger docs will be available at:
+```bash
+http://ec2-18-212-56-36.compute-1.amazonaws.com:8000/docs
+```
