@@ -48,6 +48,7 @@ jobs:
             cd ~/CommonAssessmentTool &&
             git fetch origin &&
             git reset --hard origin/main &&
-            docker compose down &&
+            docker compose down || true &&
+            docker ps -q --filter "expose=8000" | xargs -r docker stop &&
             docker compose up -d --build
           '
